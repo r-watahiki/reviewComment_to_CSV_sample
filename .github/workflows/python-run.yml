@@ -1,4 +1,4 @@
-name: Python prun
+name: Python run
 
 on:
   push:
