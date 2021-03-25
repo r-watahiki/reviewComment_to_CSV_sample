@@ -34,7 +34,7 @@ def main():
        cm_dict = json.loads(cm_response.text)
        
        for cm in cm_dict:
-          cm_parentid = cm_dict.get('in_reply_to_id',None)
+          cm_parentid = cm.get('in_reply_to_id',None)
               
           cm_se = pd.Series([cnt,cm['id'],cm['path'],cm['body'],cm['user']['login'],cm['updated_at'],cm['html_url'],cm_parentid], index=cm_df.columns)
           cm_df = cm_df.append( cm_se, ignore_index=True)
