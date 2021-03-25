@@ -9,7 +9,7 @@ requests.packages.urllib3.disable_warnings()
 def main():
     os.environ['no_proxy'] = 'localhost'
     token = os.environ['token']
-    url = 'https://api.github.com/repos/r-watahiki/test/pulls?&state=all'
+    url = 'https://api.github.com/repos/r-watahiki/reviewComment_to_CSV_sample/pulls?access_token='+ token +'&state=all'
     response = requests.get(url, verify=False)
     json_dict = json.loads(response.text)
     
@@ -18,10 +18,10 @@ def main():
     
     for i,pr in enumerate(json_dict):
        cnt=str(i+1)
-       tmp_se = pd.Series( [cnt,pr['title'],pr['body'],pr['user']['login'],pr['updated_at'],pr['html_url']], index=pr_df.columns)
-       pr_df = pr_df.append( tmp_se,ignore_index=True)
+       pr_response = pd.Series([cnt,pr['title'],pr['body'],pr['user']['login'],pr['updated_at'],pr['html_url']], index=pr_df.columns)
+       pr_df = pr_df.append( pr_response,ignore_index=True)
         
-       rv_url = 'https://api.github.com/repos/r-watahiki/test/pulls/' + cnt + '/reviews'
+       rv_url = 'https://api.github.com/repos/r-watahiki/reviewComment_to_CSV_sample/pulls/' + cnt + '/reviews'
        rv_response = requests.get(rv_url, verify=False)
        rv_dict = json.loads(rv_response.text)
                
@@ -29,7 +29,7 @@ def main():
           rv_se = pd.Series([cnt,review['id'],"",review['body'],review['user']['login'],review['submitted_at'],review['html_url'],""], index=cm_df.columns)
           cm_df = cm_df.append( rv_se, ignore_index=True)
           
-       cm_url = 'https://api.github.com/repos/r-watahiki/test/pulls/' + cnt + '/comments'
+       cm_url = 'https://api.github.com/repos/r-watahiki/reviewComment_to_CSV_sample/pulls/' + cnt + '/comments'
        cm_response = requests.get(cm_url, verify=False)
        cm_dict = json.loads(cm_response.text)
        
