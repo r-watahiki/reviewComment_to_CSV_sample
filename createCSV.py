@@ -9,7 +9,7 @@ requests.packages.urllib3.disable_warnings()
 def main():
     os.environ['no_proxy'] = 'localhost'
     token = os.environ['token']
-    url = 'https://api.github.com/repos/r-watahiki/test/pulls?access_token=' + token + '&state=all'
+    url = 'https://api.github.com/repos/r-watahiki/test/pulls?&state=all'
     response = requests.get(url, verify=False)
     json_dict = json.loads(response.text)
     
