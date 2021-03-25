@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-     token: ${{ACCESS_TOKEN}}
+     token: ${{secrets.ACCESS_TOKEN}}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
