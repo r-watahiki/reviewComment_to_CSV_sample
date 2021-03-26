@@ -2,7 +2,10 @@
 プルリクエストおよびそのレビューコメントをCSV出力するGitHubActionsのサンプル
 
 ## Description
-- Actionsから手動でRun Actionするトリガーにしてあります。
+[手動トリガー](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/)で、以下の正規化されたデータが出力される。
 
-## Note
-- APIエンドポイントにtoken入れてないので、プライベートリポジトリにする場合に注意。
+- output_pr.csv
+プルリクエスト一覧。
+- output_cm.csv
+プルリクエストに対するコメント一覧。
+特定ファイル・特定行に対してのコメントはその対象も表示する。
