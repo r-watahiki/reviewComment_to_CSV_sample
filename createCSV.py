@@ -21,7 +21,7 @@ def main():
        pr_response = pd.Series([cnt,pr['title'],pr['body'],pr['user']['login'],pr['updated_at'],pr['html_url']], index=pr_df.columns)
        pr_df = pr_df.append( pr_response,ignore_index=True)
         
-       rv_url = 'https://api.github.com/repos/r-watahiki/reviewComment_to_CSV_sample/pulls/' + cnt + '/reviews'
+       rv_url = 'https://api.github.com/repos/r-watahiki/reviewComment_to_CSV_sample/issues/' + cnt + '/reviews'
        rv_response = requests.get(rv_url, verify=False)
        rv_dict = json.loads(rv_response.text)
                
