@@ -12,7 +12,7 @@ def main():
     os.environ['no_proxy'] = 'localhost'
     token = os.environ['token']
     repo = os.environ['repo']
-    url = 'https://api.github.com/repos/' + repo + '/pulls?access_token='+ token +'&state=all'
+    url = 'https://api.github.com/repos/' + repo + '/pulls?&state=all'
     response = requests.get(url, verify=False)
     json_dict = json.loads(response.text)
     
@@ -24,7 +24,8 @@ def main():
        pr_response = pd.Series([cnt,pr['title'],pr['body'],pr['user']['login'],pr['updated_at'],pr['html_url']], index=pr_df.columns)
        pr_df = pr_df.append( pr_response,ignore_index=True)
         
-       rv_url = 'https://api.github.com/repos/'+ repo +'/issues/' + cnt + '/comments?access_token=' + token
+       rv_url = 'https://api.github.com/repos/'+ repo +'/issues/' + cnt + '/comments'
+       print(rv_url)
        rv_response = requests.get(rv_url, verify=False)
        rv_dict = json.loads(rv_response.text)
                
@@ -32,7 +33,7 @@ def main():
           rv_se = pd.Series([cnt,review['id'],"",review['body'],review['user']['login'],review['updated_at'],review['html_url'],""], index=cm_df.columns)
           cm_df = cm_df.append( rv_se, ignore_index=True)
           
-       cm_url = 'https://api.github.com/repos/'+ repo + '/pulls/' + cnt + '/comments?access_token=' + token
+       cm_url = 'https://api.github.com/repos/'+ repo + '/pulls/' + cnt + '/comments'
        cm_response = requests.get(cm_url, verify=False)
        cm_dict = json.loads(cm_response.text)
        
