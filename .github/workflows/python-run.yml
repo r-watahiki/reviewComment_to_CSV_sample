@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-     token: ${{secrets.ACCESS_TOKEN}}
-     repo: ${secrets.GITHUB_REPOSITORY}
+     token: ${{secrets.GITHUB_TOKEN}}
+     repo: ${GITHUB_REPOSITORY}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
