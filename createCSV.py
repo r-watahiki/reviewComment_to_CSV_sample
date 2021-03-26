@@ -26,7 +26,7 @@ def main():
        rv_dict = json.loads(rv_response.text)
                
        for review in rv_dict:
-          rv_se = pd.Series([cnt,review['id'],"",review['body'],review['user']['login'],review['submitted_at'],review['html_url'],""], index=cm_df.columns)
+          rv_se = pd.Series([cnt,review['id'],"",review['body'],review['user']['login'],review['updated_at'],review['html_url'],""], index=cm_df.columns)
           cm_df = cm_df.append( rv_se, ignore_index=True)
           
        cm_url = 'https://api.github.com/repos/r-watahiki/reviewComment_to_CSV_sample/pulls/' + cnt + '/comments'
