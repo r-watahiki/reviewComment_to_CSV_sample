@@ -28,7 +28,7 @@ def main():
        rv_dict = json.loads(rv_response.text)
                
        for review in rv_dict:
-          rv_se = pd.Series([cnt,review['id'],review['body'],review['user']['login'],review['updated_at'],review['html_url']], index=cm_df.columns)
+          rv_se = pd.Series([cnt,review['id'],review['body'],review['user']['login'],review['submitted_at'],review['html_url']], index=cm_df.columns)
           rv_df = rv_df.append( rv_se, ignore_index=True)
        
        issuecm_url = 'https://api.github.com/repos/'+ repo +'/issues/' + cnt + '/comments?access_token=' + token # PRConversationで残したコメント
