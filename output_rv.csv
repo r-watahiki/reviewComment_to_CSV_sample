@@ -1,5 +1,4 @@
-プルリクエストID,プルリクエストレビューID,レビューコメント,レビューした人,更新日時,URL,コメント,コメントID,コメントした人,対象,親コメントID
-1,620962177,,r-watahiki,2021-03-25T10:44:26Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#pullrequestreview-620962177,,,,,
-1,620962316,,r-watahiki,2021-03-25T10:44:37Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#pullrequestreview-620962316,,,,,
-1,625902501,レビューコメント,r-watahiki,2021-04-01T05:07:29Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#pullrequestreview-625902501,,,,,
-1,,,,2021-03-25T10:44:06Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#issuecomment-806545838,プルリクエストにコメント。,806545838.0,r-watahiki,,
+プルリクエストID,プルリクエストレビューID,レビューコメント,レビューした人,更新日時,URL
+1,620962177,,r-watahiki,2021-03-25T10:44:26Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#pullrequestreview-620962177
+1,620962316,,r-watahiki,2021-03-25T10:44:37Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#pullrequestreview-620962316
+1,625902501,レビューコメント,r-watahiki,2021-04-01T05:07:29Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#pullrequestreview-625902501
