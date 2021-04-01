@@ -36,7 +36,7 @@ def main():
        issuecm_dict = json.loads(issuecm_response.text)
                
        for issuecm in issuecm_dict:
-          issuecm_se = pd.Series([cnt,issuecm['id'],issuecm['body'],issuecm['user']['login'],issuecm['updated_at'],issuecm['html_url'],"",""], index=cm_df.columns)
+          issuecm_se = pd.Series([cnt,issuecm['id'],"",issuecm['body'],issuecm['user']['login'],issuecm['updated_at'],issuecm['html_url'],"",""], index=cm_df.columns)
           rv_df = rv_df.append( issuecm_se, ignore_index=True)
           
        cm_url = 'https://api.github.com/repos/'+ repo + '/pulls/' + cnt + '/comments?access_token=' + token # PRのFileChangedでAddsinglecomment/Startareviewで残したコメント
