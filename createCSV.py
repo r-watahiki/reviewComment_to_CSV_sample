@@ -10,20 +10,21 @@ def main():
     os.environ['no_proxy'] = 'localhost'
     token = os.environ['token']
     repo = os.environ['repo']
+    urldomain = 'https://api.github.com/repos/' + repo
     pr_df = pd.DataFrame(columns=["プルリクエストID","タイトル","内容","プルリクエストした人","更新日時","URL"]) #PRのカラム
     rv_df = pd.DataFrame(columns=["プルリクエストID","プルリクエストレビューID","レビューコメント","レビューした人","更新日時","URL"])#PRに対するレビューのカラム
     cm_df = pd.DataFrame(columns=["プルリクエストID","コメントID","対象","コメント","コメントした人","更新日時","URL","プルリクエストレビューID","親コメントID"])#PRに対するコメントのカラム
     
-    url = 'https://api.github.com/repos/' + repo + '/pulls?access_token='+ token +'&state=all' #　全てのPRを取得する
-    response = requests.get(url, verify=False)
-    json_dict = json.loads(response.text)
+    pr_url = urldomain '/pulls?access_token='+ token +'&state=all' #　全てのPRを取得する
+    pr_response = requests.get(url, verify=False)
+    json_dict = json.loads(pr_response.text)
     
     for i,pr in enumerate(json_dict):
        cnt=str(i+1)
        pr_se = pd.Series([cnt,pr['title'],pr['body'],pr['user']['login'],pr['updated_at'],pr['html_url']], index=pr_df.columns)
        pr_df = pr_df.append(pr_se,ignore_index=True)
         
-       rv_url = 'https://api.github.com/repos/'+ repo +'/pulls/' + cnt + '/reviews?access_token=' + token # PRのFileChanged->Reviewchangesで残したコメント
+       rv_url = urldomain +'/pulls/' + cnt + '/reviews?access_token=' + token # PRのFileChanged->Reviewchangesで残したコメント
        rv_response = requests.get(rv_url, verify=False)
        rv_dict = json.loads(rv_response.text)
                
@@ -31,24 +32,24 @@ def main():
           rv_se = pd.Series([cnt,review['id'],review['body'],review['user']['login'],review['submitted_at'],review['html_url']], index=rv_df.columns)
           rv_df = rv_df.append( rv_se, ignore_index=True)
        
-       issuecm_url = 'https://api.github.com/repos/'+ repo +'/issues/' + cnt + '/comments?access_token=' + token # PRConversationで残したコメント
-       issuecm_response = requests.get(issuecm_url, verify=False)
-       issuecm_dict = json.loads(issuecm_response.text)
+    issuecm_url = urldomain +'/issues/comments?access_token=' + token # PRConversationで残したコメント 
+    issuecm_response = requests.get(issuecm_url, verify=False)
+    issuecm_dict = json.loads(issuecm_response.text)
                
-       for issuecm in issuecm_dict:
-          issuecm_se = pd.Series([cnt,issuecm['id'],"",issuecm['body'],issuecm['user']['login'],issuecm['updated_at'],issuecm['html_url'],"",""], index=cm_df.columns)
-          cm_df = cm_df.append( issuecm_se, ignore_index=True)
+    for issuecm in issuecm_dict:
+        issuecm_se = pd.Series([cnt,issuecm['id'],"",issuecm['body'],issuecm['user']['login'],issuecm['updated_at'],issuecm['html_url'],"",""], index=cm_df.columns)
+        cm_df = cm_df.append( issuecm_se, ignore_index=True)
           
-       cm_url = 'https://api.github.com/repos/'+ repo + '/pulls/' + cnt + '/comments?access_token=' + token # PRのFileChangedでAddsinglecomment/Startareviewで残したコメント
-       cm_response = requests.get(cm_url, verify=False)
-       cm_dict = json.loads(cm_response.text)
+    cm_url = urldomain + '/pulls/comments?access_token=' + token # PRのFileChangedでAddsinglecomment/Startareviewで残したコメント
+    cm_response = requests.get(cm_url, verify=False)
+    cm_dict = json.loads(cm_response.text)
        
-       for cm in cm_dict:
-          cm_parentid = cm.get('in_reply_to_id',None)
-          cm_prid = cm.get('pull_request_review_id',None)
+    for cm in cm_dict:
+        cm_parentid = cm.get('in_reply_to_id',None)
+        cm_prid = cm.get('pull_request_review_id',None)
               
-          cm_se = pd.Series([cnt,cm['id'],cm['path'],cm['body'],cm['user']['login'],cm['updated_at'],cm['html_url'],cm_prid,cm_parentid], index=cm_df.columns)
-          cm_df = cm_df.append( cm_se, ignore_index=True)
+        cm_se = pd.Series([cnt,cm['id'],cm['path'],cm['body'],cm['user']['login'],cm['updated_at'],cm['html_url'],cm_prid,cm_parentid], index=cm_df.columns)
+        cm_df = cm_df.append( cm_se, ignore_index=True)
               
     print(pr_df)
     print(rv_df)
