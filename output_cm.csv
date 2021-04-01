@@ -1,6 +1,5 @@
-プルリクエストID,コメントID,対象,コメント,コメントした人,更新日時,URL,親コメントID
-1,806545838,,プルリクエストにコメント。,r-watahiki,2021-03-25T10:44:06Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#issuecomment-806545838,
-1,601343514,README.md,ファイルDiffにコメント,r-watahiki,2021-03-25T10:44:26Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#discussion_r601343514,
-1,601343733,README.md,ファイルDiffにコメントしたものにリプライ,r-watahiki,2021-03-25T10:44:37Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#discussion_r601343733,601343514
-1,605377766,README.md,ファイルDiffにコメント②,r-watahiki,2021-04-01T05:07:29Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#discussion_r605377766,
-1,605378088,README.md,ファイルDiffのコメントにリプライ②,r-watahiki,2021-04-01T05:07:29Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#discussion_r605378088,605377766
+プルリクエストID,コメントID,対象,コメント,コメントした人,更新日時,URL,プルリクエストレビューID,親コメントID
+1,601343514,README.md,ファイルDiffにコメント,r-watahiki,2021-03-25T10:44:26Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#discussion_r601343514,620962177,
+1,601343733,README.md,ファイルDiffにコメントしたものにリプライ,r-watahiki,2021-03-25T10:44:37Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#discussion_r601343733,620962316,601343514
+1,605377766,README.md,ファイルDiffにコメント②,r-watahiki,2021-04-01T05:07:29Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#discussion_r605377766,625902501,
+1,605378088,README.md,ファイルDiffのコメントにリプライ②,r-watahiki,2021-04-01T05:07:29Z,https://github.com/r-watahiki/reviewComment_to_CSV_sample/pull/1#discussion_r605378088,625902501,605377766
