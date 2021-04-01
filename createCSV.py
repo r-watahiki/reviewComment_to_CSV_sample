@@ -21,7 +21,7 @@ def main():
     for i,pr in enumerate(json_dict):
        cnt=str(i+1)
        pr_se = pd.Series([cnt,pr['title'],pr['body'],pr['user']['login'],pr['updated_at'],pr['html_url']], index=pr_df.columns)
-       pr_df = pr_df.append( response,ignore_index=True)
+       pr_df = pr_df.append(pr_se,ignore_index=True)
         
        rv_url = 'https://api.github.com/repos/'+ repo +'/pulls/' + cnt + '/reviews?access_token=' + token # PRのFileChanged->Reviewchangesで残したコメント
        rv_response = requests.get(rv_url, verify=False)
