@@ -1,4 +1,4 @@
-name: Python run
+name: Python run reviewlog
 
 on: [ workflow_dispatch ]
 
