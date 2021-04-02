@@ -15,8 +15,8 @@ def main():
     rv_df = pd.DataFrame(columns=["プルリクエストID","プルリクエストレビューID","レビューコメント","レビューした人","更新日時","URL"])#PRに対するレビューのカラム
     cm_df = pd.DataFrame(columns=["プルリクエストID","コメントID","対象","コメント","コメントした人","更新日時","URL","プルリクエストレビューID","親コメントID"])#PRに対するコメントのカラム
     
-    pr_url = urldomain '/pulls?access_token='+ token +'&state=all' #　全てのPRを取得する
-    pr_response = requests.get(url, verify=False)
+    pr_url = urldomain + '/pulls?access_token='+ token +'&state=all' #　全てのPRを取得する
+    pr_response = requests.get(pr_url, verify=False)
     json_dict = json.loads(pr_response.text)
     
     for i,pr in enumerate(json_dict):
