@@ -31,7 +31,8 @@ def main():
        
     for cm in cm_dict:
         cm_parentid = cm.get('in_reply_to_id',None)
-        cm_prid = cm.get('pull_request_review_id',None)
+        cm_prurl = cm.get('pull_request_url',None)
+        cm_prid = re.search(r'\d+$',issue_url).group()
               
         cm_se = pd.Series([cm_prid,cm['path'],cm['user']['login'],cm['body'],"","",cm['updated_at'],cm['html_url'],cm_parentid], index=rv_df.columns)
 
