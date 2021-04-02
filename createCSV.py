@@ -55,11 +55,9 @@ def main():
     print(rv_df)
     print(cm_df)
     
-    os.makedirs("/output", exist_ok=True)
-    
-    pr_df.to_csv("/output/output_pr.csv", index=False)
-    rv_df.to_csv("/output/output_rv.csv", index=False)
-    cm_df.to_csv("/output/output_cm.csv", index=False)
+    pr_df.to_csv("output_pr.csv", index=False)
+    rv_df.to_csv("output_rv.csv", index=False)
+    cm_df.to_csv("output_cm.csv", index=False)
 
 if __name__ == '__main__':
     main()
