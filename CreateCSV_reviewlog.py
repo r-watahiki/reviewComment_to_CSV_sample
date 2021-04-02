@@ -20,7 +20,7 @@ def main():
                
     for issuecm in issuecm_dict:
         issue_url = issuecm.get('issue_url',None)
-        issuecm_prid = re.search(r'\d+$',issue_url).gropup()
+        issuecm_prid = re.search(r'\d+$',issue_url).group()
         
         issuecm_se = pd.Series([issuecm_prid,"",issuecm['user']['login'],issuecm['body'],"","",issuecm['updated_at'],issuecm['html_url'],0], index=rv_df.columns)
         rv_df = rv_df.append( issuecm_se, ignore_index=True)
